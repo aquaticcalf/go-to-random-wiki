@@ -1,4 +1,4 @@
-package api
+package main
 
 import (
 	"encoding/json"
@@ -15,8 +15,7 @@ type WikiResponse struct {
 	} `json:"query"`
 }
 
-func Handler(w http.ResponseWriter, r *http.Request) {
-	// seed
+func handler(w http.ResponseWriter, r *http.Request) {
 	client := &http.Client{Timeout: 10 * time.Second}
 
 	resp, err := client.Get("https://en.wikipedia.org/w/api.php?action=query&format=json&list=random&rnnamespace=0&rnlimit=1")
@@ -28,7 +27,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 
 	var wikiResp WikiResponse
 	if err := json.NewDecoder(resp.Body).Decode(&wikiResp); err != nil {
-		http.Error(w, "failed to parse wikipedia response", http.StatusInternalServerError)
+		http.Error(w, "failed to parse Wikipedia response", http.StatusInternalServerError)
 		return
 	}
 
@@ -42,3 +41,5 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, wikiURL, http.StatusFound)
 }
+
+var Handler = http.HandlerFunc(handler)
