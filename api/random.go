@@ -21,7 +21,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 
 	resp, err := client.Get("https://en.wikipedia.org/w/api.php?action=query&format=json&list=random&rnnamespace=0&rnlimit=1")
 	if err != nil {
-		http.Error(w, failed to fetch random article", http.StatusInternalServerError)
+		http.Error(w, "failed to fetch random article", http.StatusInternalServerError)
 		return
 	}
 	defer resp.Body.Close()
