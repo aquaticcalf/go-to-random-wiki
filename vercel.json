@@ -7,7 +7,7 @@
     }
   ],
   "functions": {
-    "api/random.go": {
+    "random.go": {
       "runtime": "vercel-go@0.5.1"
     }
   }
