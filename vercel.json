@@ -1,9 +1,14 @@
 {
   "version": 2,
-  "builds": [
+  "routes": [
     {
-"src": "api/random.go",
-"use": "@vercel/go"
-}
-  ]
+      "src": "/random.go",
+      "dest": "/"
+    }
+  ],
+  "functions": {
+    "api/random.go": {
+      "runtime": "vercel-go@0.5.1"
+    }
+  }
 }
