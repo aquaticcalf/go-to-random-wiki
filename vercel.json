@@ -1,14 +1,7 @@
 {
-  "version": 2,
-  "routes": [
-    {
-      "src": "/random.go",
-      "dest": "/"
-    }
-  ],
-  "functions": {
-    "api/random.go": {
-      "runtime": "vercel-go@0.5.1"
+  "build": {
+    "env": {
+      "GO_BUILD_FLAGS": "-ldflags '-s -w'"
     }
   }
 }
